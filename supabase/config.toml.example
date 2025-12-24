@@ -1,0 +1,33 @@
+# Supabase project configuration
+# Rename this to config.toml and update with your project details
+
+[api]
+# Port for local Supabase API
+port = 54321
+# Schema to expose in API
+schemas = ["public", "storage"]
+# Extra search path for PostgreSQL
+extra_search_path = ["public"]
+# Max rows returned
+max_rows = 1000
+
+[db]
+# Port for local PostgreSQL
+port = 54322
+# Major version of PostgreSQL
+major_version = 15
+
+[studio]
+# Port for Supabase Studio
+port = 54323
+
+[auth]
+# Enable/disable email confirmation
+enable_signup = true
+site_url = "http://localhost:3000"
+# JWT expiry in seconds
+jwt_expiry = 3600
+
+[storage]
+# Storage file size limit in bytes (50MB)
+file_size_limit = 52428800

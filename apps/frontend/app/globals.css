@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222 47% 3%; /* slate-950 #020617 */
+    --foreground: 210 40% 98%; /* slate-50 #F8FAFC */
+
+    --card: 222 47% 6%; /* slate-900 #0f172a */
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 6%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 38 92% 50%; /* Construction orange #F59E0B */
+    --primary-foreground: 222 47% 3%;
+
+    --secondary: 215 25% 27%; /* slate-700 */
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 215 20% 65%; /* slate-400 #94A3B8 */
+    --muted-foreground: 215 16% 47%;
+
+    --accent: 38 92% 50%;
+    --accent-foreground: 222 47% 3%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 215 28% 17%; /* slate-800 #334155 */
+    --input: 215 28% 17%;
+    --ring: 38 92% 50%;
+
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222 47% 3%; /* slate-950 #020617 */
+    --foreground: 210 40% 98%; /* slate-50 #F8FAFC */
+
+    --card: 222 47% 6%; /* slate-900 #0f172a */
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 6%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 38 92% 50%; /* Construction orange #F59E0B */
+    --primary-foreground: 222 47% 3%;
+
+    --secondary: 215 25% 27%; /* slate-700 */
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 215 20% 65%; /* slate-400 #94A3B8 */
+    --muted-foreground: 215 16% 47%;
+
+    --accent: 38 92% 50%;
+    --accent-foreground: 222 47% 3%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 215 28% 17%; /* slate-800 #334155 */
+    --input: 215 28% 17%;
+    --ring: 38 92% 50%;
+
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
