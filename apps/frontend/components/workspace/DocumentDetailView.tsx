@@ -27,7 +27,7 @@ export function DocumentDetailView({ document }: DocumentDetailViewProps) {
   const getStatusBadge = () => {
     const statusStyles = {
       [DocumentStatus.ANALYZED]: "bg-green-500/20 text-green-400 border-green-500/30",
-      [DocumentStatus.PENDING]: "bg-yellow-500/20 text-yellow-400 border-yellow-500/30",
+      [DocumentStatus.PENDING]: "bg-amber-500/20 text-amber-400 border-amber-500/30",
       [DocumentStatus.DRAFT]: "bg-slate-500/20 text-slate-400 border-slate-500/30",
     };
 

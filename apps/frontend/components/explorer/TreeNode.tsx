@@ -15,6 +15,7 @@ interface TreeNodeProps {
   children?: React.ReactNode;
   documentCount?: number;
   status?: DocumentStatus;
+  isCollapsed?: boolean;
 }
 
 export function TreeNode({
@@ -26,6 +27,7 @@ export function TreeNode({
   children,
   documentCount,
   status,
+  isCollapsed = false,
 }: TreeNodeProps) {
   const {
     selectedNodeId,
@@ -129,29 +131,33 @@ export function TreeNode({
         {/* Icon */}
         <div className="shrink-0 text-muted-foreground">{renderIcon()}</div>
 
-        {/* Label */}
-        <span
-          className={cn(
-            "text-sm flex-1 truncate",
-            isSelected ? "text-foreground font-medium" : "text-foreground"
-          )}
-        >
-          {label}
-        </span>
+        {/* Label - only show if not collapsed */}
+        {!isCollapsed && (
+          <>
+            <span
+              className={cn(
+                "text-sm flex-1 truncate",
+                isSelected ? "text-foreground font-medium" : "text-foreground"
+              )}
+            >
+              {label}
+            </span>
 
-        {/* Document count badge for folders */}
-        {type === NodeType.FOLDER && documentCount !== undefined && (
-          <span className="text-xs text-muted-foreground font-mono">
-            {documentCount}
-          </span>
+            {/* Document count badge for folders */}
+            {type === NodeType.FOLDER && documentCount !== undefined && (
+              <span className="text-xs text-muted-foreground font-mono">
+                {documentCount}
+              </span>
+            )}
+
+            {/* Status badge for documents */}
+            {renderStatusBadge()}
+          </>
         )}
-
-        {/* Status badge for documents */}
-        {renderStatusBadge()}
       </div>
 
       {/* Children */}
-      {hasChildren && isExpanded && <div className="mt-0.5">{children}</div>}
+      {hasChildren && isExpanded && !isCollapsed && <div className="mt-0.5">{children}</div>}
     </div>
   );
 }

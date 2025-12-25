@@ -5,7 +5,11 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { TreeView } from "@/components/explorer/TreeView";
 import { useData } from "@/context/DataContext";
 
-export function Explorer() {
+interface ExplorerProps {
+  isCollapsed?: boolean;
+}
+
+export function Explorer({ isCollapsed = false }: ExplorerProps) {
   const { project, loading } = useData();
 
   if (loading) {
@@ -27,7 +31,7 @@ export function Explorer() {
   return (
     <ScrollArea className="h-full">
       <div className="p-4">
-        <TreeView project={project} />
+        <TreeView project={project} isCollapsed={isCollapsed} />
       </div>
     </ScrollArea>
   );
