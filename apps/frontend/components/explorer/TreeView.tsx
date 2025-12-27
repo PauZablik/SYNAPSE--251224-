@@ -1,9 +1,10 @@
 "use client";
 
 import React from "react";
-import { Project, NodeType } from "@/types";
+import { Project, NodeType, Document } from "@/types";
 import { TreeNode } from "./TreeNode";
 import { FolderKanban } from "lucide-react";
+import { useLocale } from "@/context/LocaleContext";
 
 interface TreeViewProps {
   project: Project;
@@ -32,31 +33,41 @@ export function TreeView({ project, isCollapsed = false }: TreeViewProps) {
             level={1}
             isCollapsed={isCollapsed}
           >
-            {/* Folders */}
-            {section.folders.map((folder) => (
-              <TreeNode
-                key={folder.id}
-                id={folder.id}
-                label={folder.name}
-                type={NodeType.FOLDER}
-                level={2}
-                documentCount={folder.documents.length}
-                isCollapsed={isCollapsed}
-              >
-                {/* Documents */}
-                {folder.documents.map((document) => (
-                  <TreeNode
-                    key={document.id}
-                    id={document.id}
-                    label={document.name}
-                    type={NodeType.DOCUMENT}
-                    level={3}
-                    status={document.status}
-                    isCollapsed={isCollapsed}
-                  />
-                ))}
-              </TreeNode>
-            ))}
+              {/* Virtual Folders - Create a folder for each section to maintain UI structure */}
+            {(() => {
+              // Create a virtual folder containing all documents in this section
+              const virtualFolderId = `folder-${section.id}`;
+              const { t } = useLocale(); // Use locale for translation
+              const virtualFolderName = t("Documents"); // Default name for the virtual folder
+              
+              // Filter documents that belong to this section
+              const sectionDocuments = section.documents || [];
+              
+              return (
+                <TreeNode
+                  key={virtualFolderId}
+                  id={virtualFolderId}
+                  label={virtualFolderName}
+                  type={NodeType.FOLDER}
+                  level={2}
+                  documentCount={sectionDocuments.length}
+                  isCollapsed={isCollapsed}
+                >
+                  {/* Documents */}
+                  {sectionDocuments.map((document: Document) => (
+                    <TreeNode
+                      key={document.id}
+                      id={document.id}
+                      label={document.name}
+                      type={NodeType.DOCUMENT}
+                      level={3}
+                      status={document.status}
+                      isCollapsed={isCollapsed}
+                    />
+                  ))}
+                </TreeNode>
+              );
+            })()}
           </TreeNode>
         ))}
       </TreeNode>

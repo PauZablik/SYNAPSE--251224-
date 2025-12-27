@@ -9,9 +9,10 @@ export enum DocumentType {
 }
 
 export enum DocumentStatus {
-  ANALYZED = "analyzed",
-  PENDING = "pending",
-  DRAFT = "draft",
+  UPLOADED = "uploaded",
+  PROCESSING = "processing",
+  COMPLETED = "completed",
+  ERROR = "error",
 }
 
 export enum SectionType {
@@ -74,9 +75,10 @@ export interface Folder {
 export interface Section {
   id: string;
   name: string;
-  type: SectionType;
+  code: string;
   projectId: string;
-  folders: Folder[];
+  folders?: Folder[];
+  documents?: Document[];
 }
 
 export interface Project {

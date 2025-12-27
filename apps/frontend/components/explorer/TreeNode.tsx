@@ -5,6 +5,7 @@ import { ChevronRight, Folder, FileText, Package } from "lucide-react";
 import { useNavigation } from "@/context/NavigationContext";
 import { NodeType, DocumentStatus } from "@/types";
 import { cn } from "@/lib/utils/cn";
+import { useLocale } from "@/context/LocaleContext";
 
 interface TreeNodeProps {
   id: string;
@@ -35,6 +36,8 @@ export function TreeNode({
     toggleNodeExpansion,
     isNodeExpanded,
   } = useNavigation();
+  
+  const { t } = useLocale();
 
   const isSelected = selectedNodeId === id;
   const isExpanded = isNodeExpanded(id);
@@ -74,9 +77,10 @@ export function TreeNode({
     if (type !== NodeType.DOCUMENT || !status) return null;
 
     const statusColors = {
-      [DocumentStatus.ANALYZED]: "bg-green-500/20 text-green-400",
-      [DocumentStatus.PENDING]: "bg-yellow-500/20 text-yellow-400",
-      [DocumentStatus.DRAFT]: "bg-slate-500/20 text-slate-400",
+      [DocumentStatus.COMPLETED]: "bg-green-500/20 text-green-400",
+      [DocumentStatus.PROCESSING]: "bg-amber-500/20 text-amber-400",
+      [DocumentStatus.UPLOADED]: "bg-blue-500/20 text-blue-400",
+      [DocumentStatus.ERROR]: "bg-red-500/20 text-red-400",
     };
 
     return (
@@ -86,9 +90,10 @@ export function TreeNode({
           statusColors[status]
         )}
       >
-        {status === DocumentStatus.ANALYZED && "✓"}
-        {status === DocumentStatus.PENDING && "..."}
-        {status === DocumentStatus.DRAFT && "○"}
+        {status === DocumentStatus.COMPLETED && t("✓")}
+        {status === DocumentStatus.PROCESSING && t("...")}
+        {status === DocumentStatus.UPLOADED && t("○")}
+        {status === DocumentStatus.ERROR && t("✗")}
       </span>
     );
   };
